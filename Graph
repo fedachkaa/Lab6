@@ -1,0 +1,12 @@
+package Lab6;
+
+import java.util.Map;
+import java.util.Set;
+
+public interface Graph {
+	public void add(Vertex nameVer1, Vertex[] lst);
+    public boolean getElement(int index);
+    public boolean getElement(String name);
+	public boolean getChildren(String name);
+	public boolean minWay(Map<Vertex, Set<Vertex>> adj, Vertex a, Vertex b);
+}
