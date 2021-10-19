@@ -1,0 +1,74 @@
+package Lab6;
+
+import java.util.*;
+
+public class GraphClass implements Graph {
+	Map<Vertex, Set<Vertex>> adj_list = new HashMap<Vertex, Set<Vertex>>();
+
+	@Override
+	public void add(Vertex nameVer1, Vertex[] lst) {
+		Set<Vertex> listVers = Set.of(lst);
+		adj_list.put(nameVer1, listVers);
+	}
+
+	@Override
+	public boolean getElement(int index) {
+		for (Vertex v : adj_list.keySet()) {
+			if (v.index == index) {
+				System.out.println("Element found " + v.name + ' ' + v.index);
+				return true;
+			}
+		}
+		System.out.println("No such element exists");
+		return false;
+	}
+
+	@Override
+	public boolean getElement(String name) {
+		for (Vertex v : adj_list.keySet()) {
+			if (v.name == name) {
+				System.out.println("Element found " + v.name + ' ' + v.index);
+				return true;
+			}
+		}
+		System.out.println("No such element exists");
+		return false;
+	}
+
+	@Override
+	public boolean getChildren(String name) {
+		for (Vertex v : adj_list.keySet()) {
+			if (v.name == name) {
+				for (Vertex v_child : adj_list.get(v)) {
+					System.out.print(v_child.name + " ");
+				}
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public boolean minWay(Map<Vertex, Set<Vertex>> adj, Vertex a, Vertex b) {
+		StringBuilder sb = new StringBuilder();
+		Queue<Vertex> q = new PriorityQueue<Vertex>();
+		q.add(a);
+		sb.append(a.name + " ");
+		a.visited = true;
+		while (q.size() > 0) {
+			Vertex v1 = q.remove();
+			for (Vertex v : adj.get(v1)) {
+				if (!v.visited) {
+					q.add(v);
+					sb.append(v.name + " ");
+					v.visited = true;
+					if (v.equals(b)) {
+						System.out.println(sb.toString());
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+}
