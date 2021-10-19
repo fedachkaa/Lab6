@@ -1,0 +1,38 @@
+package Lab6;
+
+public class Main {
+	public static void main(String[] args) {
+		GraphClass graph = new GraphClass();
+
+		Vertex a = new Vertex("A", 0);
+		Vertex b = new Vertex("B", 1);
+		Vertex c = new Vertex("C", 2);
+		Vertex d = new Vertex("D", 3);
+		graph.add(a, new Vertex[] { b, c });
+		graph.add(b, new Vertex[] { a, c });
+		graph.add(c, new Vertex[] { a, b, d });
+		graph.add(d, new Vertex[] { c });
+ 
+		graph.getElement(0);
+		graph.getElement(1);
+		graph.getElement(2);
+		graph.getElement(3);
+		graph.getElement(100);
+		System.out.println("----------------------");
+
+		graph.getElement("A");
+		graph.getElement("D");
+		graph.getElement("C");
+		graph.getElement("B");
+		graph.getElement("E");
+		System.out.println("----------------------");
+
+		System.out.println("Children of A: ");
+		graph.getChildren("A");
+		System.out.println();
+
+		System.out.println("----------------------");
+		System.out.println("Min way from A to B ");
+		graph.minWay(graph.adj_list, a, b);
+	}
+}
