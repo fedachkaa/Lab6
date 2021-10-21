@@ -3,31 +3,24 @@ package Lab6;
 public class Vertex implements Comparable<Vertex> {
 	public String name;
 	public int index;
-	public boolean visited = false;
 
 	Vertex(String name, int index) {
 		this.name = name;
 		this.index = index;
 	}
-
-	public boolean equals(Object o) {
-		if (o == this) {
-			return true;
-		}
-		if (o == null || o.getClass() != this.getClass()) {
-			return false;
-		}
-		Vertex other = (Vertex) o;
-		if (name != other.name)
-			return false;
-		if (index != other.index)
-			return false;
-		return true;
-	}
-
+	
 	@Override
 	public int compareTo(Vertex o) {
-		// TODO Auto-generated method stub
-		return 0;
+		if (o.index<this.index)
+		{
+			return -1;
+		}
+		else if (o.index>this.index)
+		{
+			return 1;
+		}
+		else 
+			return 0;
 	}
+	
 }
